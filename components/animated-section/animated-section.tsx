@@ -52,8 +52,22 @@ export function AnimatedSection({
   const variants = {
     hidden: {
       opacity: 0,
-      y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
-      x: direction === "left" ? 30 : direction === "right" ? -30 : 0,
+      y:
+        direction === "up"
+          ? 30
+          : direction === "down"
+            ? -30
+            : direction === "left" || direction === "right"
+              ? 0
+              : 0,
+      x:
+        direction === "left"
+          ? 40
+          : direction === "right"
+            ? -40
+            : direction === "up" || direction === "down"
+              ? 0
+              : 0,
       scale: scale ? 0.95 : 1,
     },
     visible: {
@@ -81,11 +95,27 @@ export function AnimatedSection({
     ? {
         hidden: {
           opacity: 0,
-          y: direction === "up" ? 20 : direction === "down" ? -20 : 0,
+          y:
+            direction === "up"
+              ? 20
+              : direction === "down"
+                ? -20
+                : direction === "left" || direction === "right"
+                  ? 0
+                  : 0,
+          x:
+            direction === "left"
+              ? 25
+              : direction === "right"
+                ? -25
+                : direction === "up" || direction === "down"
+                  ? 0
+                  : 0,
         },
         visible: {
           opacity: 1,
           y: 0,
+          x: 0,
           transition: {
             duration: 0.8,
             ease: [0.16, 1, 0.3, 1],

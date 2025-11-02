@@ -12,8 +12,6 @@ export const Rsvp = ({
     return <div>Lo sentimos, no se encontró el invitado</div>;
   }
 
-  console.log({ inviteCode, going, numberOfGuests, maxNumberOfGuests });
-
   return (
     <div className="flex flex-col items-center justify-center relative p-4">
       <Image

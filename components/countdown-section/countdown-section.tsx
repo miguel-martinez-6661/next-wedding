@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 
 interface TimeLeft {
   days: number;
@@ -45,28 +44,22 @@ export function CountdownSection({ targetDate }: CountdownSectionProps) {
   const formatNumber = (num: number) => String(num).padStart(2, "0");
 
   return (
-    <div className="mx-auto py-12 md:py-24">
+    <div className="relative w-full">
       <div className="relative text-center">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-2xl md:text-3xl tracking-[0.3em] font-cormorant mb-2">
-            NOS VEMOS EN
-          </h1>
+        <div className="my-6">
+          <h1 className="text-sm font-cormorant my-2 font-bold">¡PREPARATE!</h1>
+          <h1 className="text-3xl md:text-xl font-allura my-2">Nos vemos dentro de</h1>
         </div>
 
         {/* Countdown */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-8">
-          <div className="flex space-x-4">
-            <TimeUnit value={timeLeft.days} label="DIAS" />
-            <Separator className="hidden md:block" />
-            <TimeUnit value={timeLeft.hours} label="HORAS" />
-          </div>
-          <Separator className="hidden md:block" />
-          <div className="flex">
-            <TimeUnit value={timeLeft.minutes} label="MINUTOS" />
-            <Separator />
-            <TimeUnit value={timeLeft.seconds} label="SEGUNDOS" />
-          </div>
+        <div className="flex justify-center items-center gap-1 md:gap-2 mb-8">
+          <TimeUnit value={timeLeft.days} label="DIAS" />
+          <Separator />
+          <TimeUnit value={timeLeft.hours} label="HORAS" />
+          <Separator />
+          <TimeUnit value={timeLeft.minutes} label="MINUTOS" />
+          <Separator />
+          <TimeUnit value={timeLeft.seconds} label="SEGUNDOS" />
         </div>
       </div>
     </div>
@@ -78,25 +71,18 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="text-6xl md:text-8xl font-serif text-[#3d2f2a] tabular-nums leading-none mb-4">
+      <div className="text-3xl md:text-3xl font-serif tabular-nums leading-none mb-4">
         {formatNumber(value)}
       </div>
-      <div className="text-sm md:text-base tracking-[0.2em] font-serif text-[#3d2f2a]">
+      <div className="text-xs md:text-base tracking-[0.2em] font-serif">
         {label}
       </div>
     </div>
   );
 }
 
-function Separator({ className }: { className?: string }) {
+function Separator() {
   return (
-    <div
-      className={cn(
-        "text-6xl md:text-8xl font-serif text-[#3d2f2a] leading-none mb-8",
-        className
-      )}
-    >
-      :
-    </div>
+    <div className="text-3xl md:text-4xl font-serif leading-none mb-8">:</div>
   );
 }

@@ -23,7 +23,7 @@ type RsvpFormProps = {
 
 export const RsvpForm = ({
   inviteCode = "default",
-  going = false,
+  going = null,
   numberOfGuests,
   maxNumberOfGuests,
 }: RsvpFormProps) => {
@@ -75,13 +75,13 @@ export const RsvpForm = ({
 
   return (
     <div className="flex flex-col w-full gap-8 items-center">
-      <h2 className="text-xl text-center font-cormorant">Por favor</h2>
+      {/* <h2 className="text-xl text-center font-cormorant">Por favor, confirma tu asistencia</h2> */}
       <h2 className="text-6xl text-center mb-8 font-allura">
         Confirmar Asistencia
       </h2>
       <div className="flex flex-col border-1 border-gray-200 bg-white/50 rounded-lg w-full md:w-2/3 p-4 z-20">
         <div className="flex flex-col gap-2">
-          <Label className="text-lg font-cormorant font-bold">Asistirás?</Label>
+          <Label className="text-lg font-cormorant font-bold">Confirmar</Label>
           <div className="flex w-full space-x-2 text-gray-600">
             <Button
               variant="outline"
@@ -108,29 +108,32 @@ export const RsvpForm = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col border-1 border-gray-200 bg-white/50 rounded-lg w-full md:w-2/3 p-4 z-20">
-        <div className="flex flex-col gap-2">
-          <Label className="text-lg font-cormorant font-bold">
-            Cuantas personas irán?
-          </Label>
-          <Select value={guests.toString()} onValueChange={handleGuestChange}>
-            <SelectTrigger className="w-full bg-white">
-              <SelectValue placeholder="Indicar cuantas personas" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {Array.from({ length: maxNumberOfGuests }, (_, i) => i + 1).map(
-                  (num) => (
+      {isGoing && (
+        <div className="flex flex-col border-1 border-gray-200 bg-white/50 rounded-lg w-full md:w-2/3 p-4 z-20">
+          <div className="flex flex-col gap-2">
+            <Label className="text-lg font-cormorant font-bold">
+              Cuantos asistirán?
+            </Label>
+            <Select value={guests.toString()} onValueChange={handleGuestChange}>
+              <SelectTrigger className="w-full bg-white">
+                <SelectValue placeholder="Indicar cuantas personas" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {Array.from(
+                    { length: maxNumberOfGuests },
+                    (_, i) => i + 1
+                  ).map((num) => (
                     <SelectItem key={num} value={num.toString()}>
                       {`${num} ${num === 1 ? "persona" : "personas"}`}
                     </SelectItem>
-                  )
-                )}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-      </div>
+      )}
 
       <Button
         className="w-full font-cormorant font-bold md:w-2/3 mt-4 z-10 h-12"

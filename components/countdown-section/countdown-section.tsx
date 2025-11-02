@@ -41,7 +41,7 @@ export function CountdownSection({ targetDate }: CountdownSectionProps) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  const formatNumber = (num: number) => String(num).padStart(2, "0");
+  // const formatNumber = (num: number) => String(num).padStart(2, "0");
 
   return (
     <div className="relative w-full">

@@ -79,13 +79,13 @@ export async function appendRsvpToSheet(
     ];
 
     // If this is the first row, add headers
-    const range = `${sheetName}!A:E`;
+    // const range = `${sheetName}!A:E`;
 
     // Check if sheet exists and has headers
-    const existingData = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range: `${sheetName}!A1:E1`,
-    });
+    // const existingData = await sheets.spreadsheets.values.get({
+    //   spreadsheetId,
+    //   range: `${sheetName}!A1:E1`,
+    // });
 
     // Append the data
     await sheets.spreadsheets.values.append({

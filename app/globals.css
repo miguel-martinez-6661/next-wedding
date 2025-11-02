@@ -79,6 +79,7 @@
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
   --font-allura: "Allura", cursive;
+  --font-ephesis: "Ephesis", cursive;
 }
 
 .dark {
@@ -115,6 +116,7 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
   --font-allura: "Allura", cursive;
   --font-cormorant: "Cormorant Garamond", serif;
+  --font-ephesis: "Ephesis", cursive;
 }
 
 @layer base {
@@ -126,6 +128,18 @@
   }
 }
 
+@layer utilities {
+  /* Slow down all transitions globally */
+  [class*="transition"] {
+    transition-duration: 1000ms !important;
+  }
+  
+  /* Slow down animations */
+  [class*="animate"]:not([class*="animate-spin"]) {
+    animation-duration: 2s !important;
+  }
+}
+
 .font-allura {
   font-family: var(--font-allura);
 }
@@ -134,4 +148,8 @@
   font-family: var(--font-cormorant);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.font-ephesis {
+  font-family: var(--font-ephesis);
 }

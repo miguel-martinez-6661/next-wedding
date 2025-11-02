@@ -48,7 +48,7 @@ export function CountdownSection({ targetDate }: CountdownSectionProps) {
       <div className="relative text-center">
         <div className="my-6">
           <h1 className="text-sm font-cormorant my-2 font-bold">¡PREPARATE!</h1>
-          <h1 className="text-3xl md:text-xl font-allura my-2">Nos vemos dentro de</h1>
+          <h1 className="text-4xl font-ephesis my-2">Nos vemos dentro de</h1>
         </div>
 
         {/* Countdown */}

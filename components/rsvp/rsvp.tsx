@@ -14,7 +14,7 @@ export const Rsvp = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center relative p-4">
+    <div className="flex flex-col items-center justify-center relative px-4">
       <Image
         className="absolute -top-10 -left-40 opacity-40"
         src="/flower-2.png"

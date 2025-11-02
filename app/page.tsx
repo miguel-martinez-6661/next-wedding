@@ -7,6 +7,7 @@ import { getInviteByCode } from "@/lib/invite";
 import { MessageCircleWarningIcon } from "lucide-react";
 import Image from "next/image";
 import { DetailsSection } from "@/components/details-section/details-section";
+import { AudioPlayer } from "@/components/audio-player/audio-player";
 
 export default async function Home({
   searchParams,
@@ -58,7 +59,7 @@ export default async function Home({
                 direction="left"
                 className="inline-block ml-16 md:ml-20"
               >
-                <span className="font-allura text-5xl">cordialmente</span>
+                <span className="font-ephesis text-5xl">cordialmente</span>
               </AnimatedSection>
               <AnimatedSection
                 delay={0.3}
@@ -94,8 +95,8 @@ export default async function Home({
             objectFit="contain"
           />
           <div className="flex flex-col items-center z-10 md:scale-200">
-            <AnimatedSection delay={0.2} direction="down">
-              <span className="font-allura text-3xl mb-2">Nuestra Boda</span>
+            <AnimatedSection delay={0.2} direction="down" className="mb-8">
+              <span className="font-ephesis text-4xl">Nuestra Boda</span>
             </AnimatedSection>
             <div className="flex flex-col items-center gap-4">
               <AnimatedSection delay={0.45} direction="left">
@@ -104,7 +105,7 @@ export default async function Home({
                 </span>
               </AnimatedSection>
               <AnimatedSection delay={0.55} scale={true}>
-                <span className="font-allura text-gray-900 no-underline text-6xl">
+                <span className="font-ephesis text-gray-900 no-underline text-6xl">
                   &
                 </span>
               </AnimatedSection>
@@ -176,13 +177,13 @@ export default async function Home({
         </AnimatedSection>
 
         <SectionContainer>
-          {/* <Image
+          <Image
             className="absolute -bottom-50 -right-40 opacity-80"
             src="/flower-2.png"
             alt="flower-1"
             width={500}
             height={500}
-          /> */}
+          />
           {/* <Image
             className="absolute bottom-20 -left-40 opacity-80"
             src="/flower-1.png"
@@ -196,23 +197,20 @@ export default async function Home({
                 ¡Estamos deseando verte en nuestra boda!
               </p>
             </AnimatedSection>
-            <AnimatedSection delay={0.35} direction="left">
-              <p className="font-cormorant text-xl mb-4 text-center">
-                ¡Creemos recuerdos juntos!
-              </p>
-            </AnimatedSection>
-            <div className="flex flex-row mt-12 -ml-2 items-center">
+            <div className="flex flex-row -ml-2 items-center">
               <AnimatedSection delay={0.5} direction="right">
-                <span className="font-allura text-6xl">M</span>
-              </AnimatedSection>
-              <AnimatedSection delay={0.6} scale={true}>
-                <span className="font-allura ml-2 mr-1 text-xl">y</span>
-              </AnimatedSection>
-              <AnimatedSection delay={0.7} direction="left">
-                <span className="font-allura text-6xl">R</span>
+                <Image
+                  src="/logo-mr.png"
+                  alt="logo-mr"
+                  width={240}
+                  height={240}
+                  className="object-contain scale-150"
+                />
               </AnimatedSection>
             </div>
           </div>
+
+          <AudioPlayer />
         </SectionContainer>
       </main>
     </div>

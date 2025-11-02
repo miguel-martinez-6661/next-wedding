@@ -82,19 +82,17 @@ export const RsvpForm = ({
   return (
     <div className="flex flex-col w-full gap-8 items-center">
       {/* <h2 className="text-xl text-center font-cormorant">Por favor, confirma tu asistencia</h2> */}
-      <h2 className="text-6xl text-center mb-2 font-allura">
+      <h2 className="text-6xl text-center mb-2 font-ephesis">
         Confirmar Asistencia
       </h2>
       <div className="text-center space-y-2">
         <p className="text-thin font-cormorant">
-          Nos encantaría celebrar contigo este momento y crear juntos recuerdos
-          inolvidables.
+          Un día especial se vuelve inolvidable cuando lo compartimos con
+          quienes queremos. Nos encantaría que formes parte de este momento tan
+          significativo para nosotros.
         </p>
         <p className="text-thin font-cormorant">
-          Por favor, confirma tu asistencia para que podamos tener todo listo.
-        </p>
-        <p className="text-thin font-cormorant">
-          Puedes hacerlo hasta el{" "}
+          Por favor, confirma si podrás acompañarnos antes del{" "}
           <span className="font-bold font-serif">10 de enero de 2026</span>.
         </p>
       </div>

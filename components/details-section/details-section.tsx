@@ -7,7 +7,7 @@ export const DetailsSection = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center my-10">
       <AnimatedSection delay={0.2}>
-        <h3 className="font-allura text-6xl mt-8 text-center">Itinerario</h3>
+        <h3 className="font-ephesis text-6xl mt-8 text-center">Itinerario</h3>
       </AnimatedSection>
       <div className="md:w-full relative z-20 space-y-16 my-8 py-8">
         {/* Row 1 */}

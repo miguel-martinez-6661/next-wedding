@@ -13,16 +13,16 @@ export default async function Home({
 }: {
   searchParams: { rsvp: string };
 }) {
-  // const rsvpId = (await searchParams)?.rsvp;
-  const rsvpId = "1234567890";
-  // const guest = await getInviteByCode(rsvpId);
-  const guest = {
-    inviteCode: "1234567890",
-    name: "Miguel",
-    going: true,
-    numberOfGuests: 1,
-    maxNumberOfGuests: 100,
-  };
+  const rsvpId = (await searchParams)?.rsvp;
+  const guest = await getInviteByCode(rsvpId);
+  // const rsvpId = "1234567890";
+  // const guest = {
+  //   inviteCode: "1234567890",
+  //   name: "Miguel",
+  //   going: true,
+  //   numberOfGuests: 1,
+  //   maxNumberOfGuests: 100,
+  // };
 
   if (!rsvpId || !guest.inviteCode) {
     return (

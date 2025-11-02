@@ -11,10 +11,11 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useState } from "react";
-import { submitRsvp } from "@/lib/actions";
 import { toast } from "sonner";
+import { submitRsvp } from "@/lib/invite";
 
 type RsvpFormProps = {
+  name: string;
   inviteCode?: string;
   going: boolean | null;
   numberOfGuests: number;
@@ -22,8 +23,9 @@ type RsvpFormProps = {
 };
 
 export const RsvpForm = ({
-  inviteCode = "default",
-  going = null,
+  name,
+  inviteCode,
+  going,
   numberOfGuests,
   maxNumberOfGuests,
 }: RsvpFormProps) => {
@@ -38,6 +40,8 @@ export const RsvpForm = ({
   const handleGoingChange = (value: boolean | null) => {
     setIsGoing(value);
   };
+
+  const disableSubmit = isGoing === null || (isGoing === true && !guests);
 
   const handleSubmit = async () => {
     // Validation
@@ -55,9 +59,11 @@ export const RsvpForm = ({
 
     try {
       const result = await submitRsvp({
-        inviteCode,
+        name,
+        inviteCode: inviteCode || "",
         going: isGoing,
         numberOfGuests: isGoing ? guests : 0,
+        maxNumberOfGuests,
       });
 
       if (result.success) {
@@ -76,9 +82,22 @@ export const RsvpForm = ({
   return (
     <div className="flex flex-col w-full gap-8 items-center">
       {/* <h2 className="text-xl text-center font-cormorant">Por favor, confirma tu asistencia</h2> */}
-      <h2 className="text-6xl text-center mb-8 font-allura">
+      <h2 className="text-6xl text-center mb-2 font-allura">
         Confirmar Asistencia
       </h2>
+      <div className="text-center space-y-2">
+        <p className="text-thin font-cormorant">
+          Nos encantaría celebrar contigo este momento y crear juntos recuerdos
+          inolvidables.
+        </p>
+        <p className="text-thin font-cormorant">
+          Por favor, confirma tu asistencia para que podamos tener todo listo.
+        </p>
+        <p className="text-thin font-cormorant">
+          Puedes hacerlo hasta el{" "}
+          <span className="font-bold font-serif">10 de enero de 2026</span>.
+        </p>
+      </div>
       <div className="flex flex-col border-1 border-gray-200 bg-white/50 rounded-lg w-full md:w-2/3 p-4 z-20">
         <div className="flex flex-col gap-2">
           <Label className="text-lg font-cormorant font-bold">Confirmar</Label>
@@ -138,9 +157,9 @@ export const RsvpForm = ({
       <Button
         className="w-full font-cormorant font-bold md:w-2/3 mt-4 z-10 h-12"
         onClick={handleSubmit}
-        disabled={isSubmitting}
+        disabled={isSubmitting || disableSubmit}
       >
-        {isSubmitting ? "Enviando..." : "Confirmar Asistencia"}
+        {isSubmitting ? "Enviando..." : "Confirmar"}
       </Button>
     </div>
   );

@@ -4,11 +4,12 @@ import { Guest } from "@/types";
 
 export const Rsvp = ({
   inviteCode,
+  name,
   going,
   numberOfGuests,
   maxNumberOfGuests,
 }: Guest) => {
-  if (!inviteCode || !going || !numberOfGuests || !maxNumberOfGuests) {
+  if (!inviteCode) {
     return <div>Lo sentimos, no se encontró el invitado</div>;
   }
 
@@ -22,6 +23,8 @@ export const Rsvp = ({
         height={500}
       />
       <RsvpForm
+        name={name}
+        inviteCode={inviteCode}
         going={going}
         numberOfGuests={numberOfGuests}
         maxNumberOfGuests={maxNumberOfGuests}

@@ -14,7 +14,7 @@ export const Rsvp = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center relative px-4">
+    <div className="flex flex-col items-center justify-center relative px-6">
       <Image
         className="absolute -top-10 -left-40 opacity-40"
         src="/flower-2.png"
@@ -22,6 +22,7 @@ export const Rsvp = ({
         width={500}
         height={500}
       />
+
       <RsvpForm
         name={name}
         inviteCode={inviteCode}

@@ -1,11 +1,15 @@
-type Props = {
+import { cn } from "@/lib/utils";
+import { PropsWithChildren } from "react";
+
+type Props = PropsWithChildren & {
   imgSrc?: string;
+  y?: number;
 };
 
-export default function SnippedSection({ imgSrc }: Props) {
+export default function SnippedSection({ imgSrc, y, children }: Props) {
   return (
     <svg
-      className="w-full md:h-[1200px]"
+      className={cn("w-full md:h-[1200px]")}
       viewBox="2 0 286 254"
       preserveAspectRatio="none"
     >
@@ -15,16 +19,18 @@ export default function SnippedSection({ imgSrc }: Props) {
         </clipPath>
       </defs>
       {/* <rect width="100%" height="100%" fill="transparent" /> */}
-
-      <image
-        href={imgSrc}
-        width="100%"
-        height="100%"
-        // x="0"
-        y="-3"
-        preserveAspectRatio="xMidYMid slice" // like CSS object-fit: cover
-        clipPath="url(#dividerClip)"
-      />
+      {imgSrc && (
+        <image
+          href={imgSrc}
+          width="100%"
+          height="100%"
+          x="0"
+          y={y ?? -3}
+          preserveAspectRatio="xMidYMid slice" // like CSS object-fit: cover
+          clipPath="url(#dividerClip)"
+        />
+      )}
+      {children}
     </svg>
   );
 }

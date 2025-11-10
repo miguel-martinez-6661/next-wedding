@@ -88,8 +88,11 @@ export const RsvpForm = ({
       <div className="text-center space-y-2">
         <p className="text-thin font-cormorant">
           Un día especial se vuelve inolvidable cuando lo compartimos con
-          quienes queremos. Nos encantaría que formes parte de este momento tan
-          significativo para nosotros.
+          quienes queremos.
+        </p>
+        <p className="text-thin font-cormorant">
+          Nos encantaría que formes parte de este momento tan significativo para
+          nosotros.
         </p>
         <p className="text-thin font-cormorant">
           Por favor, confirma si podrás acompañarnos antes del{" "}

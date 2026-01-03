@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import Image from "next/image";
 
 export const LocationsSection = () => {
   return (
@@ -20,7 +19,7 @@ export const LocationsSection = () => {
         <Button
           variant="outline"
           size="lg"
-          className="w-full mt-4 bg-[#37414c] text-white cursor-pointer"
+          className="w-full mt-4 bg-black text-white cursor-pointer"
           asChild
         >
           <Link
@@ -44,7 +43,7 @@ export const LocationsSection = () => {
         <Button
           variant="outline"
           size="lg"
-          className="w-full mt-4 bg-[#37414c] text-white cursor-pointer"
+          className="w-full mt-4 bg-black text-white cursor-pointer"
           asChild
         >
           <Link

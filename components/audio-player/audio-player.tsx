@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 export function AudioPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const hasPlayedRef = useRef(false);
+  const wasPlayingRef = useRef(false);
 
   useEffect(() => {
     // If already played, don't set up listeners
@@ -44,12 +45,41 @@ export function AudioPlayer() {
     };
   }, []);
 
+  // Handle page visibility changes
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!audioRef.current) return;
+
+      if (document.hidden) {
+        // Page is hidden - pause if playing
+        if (!audioRef.current.paused) {
+          wasPlayingRef.current = true;
+          audioRef.current.pause();
+        } else {
+          wasPlayingRef.current = false;
+        }
+      } else {
+        // Page is visible - resume if it was playing
+        if (wasPlayingRef.current && hasPlayedRef.current) {
+          audioRef.current.play().catch((error) => {
+            console.error("Error resuming audio:", error);
+          });
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
     // <div className="fixed bottom-4 left-4 z-50 bg-white/70 rounded-full shadow-lg p-2 flex items-center justify-center border border-gray-200">
     <audio
       ref={audioRef}
       src="/music.mp3"
-      loop
       controls
       playsInline
       className="w-10 hidden"

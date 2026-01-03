@@ -5,9 +5,7 @@ import { LocationsSection } from "../home/locations-section";
 export const DetailsSection = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center relative -mt-32 pt-32">
-      <AnimatedSection delay={0.2}>
-        <LocationsSection />
-      </AnimatedSection>
+      <LocationsSection />
       <AnimatedSection delay={0.3}>
         <h3 className="font-ephesis text-6xl mt-8 text-center">Itinerario</h3>
       </AnimatedSection>

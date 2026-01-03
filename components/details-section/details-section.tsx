@@ -9,7 +9,7 @@ export const DetailsSection = () => {
       <AnimatedSection delay={0.3}>
         <h3 className="font-ephesis text-6xl mt-8 text-center">Itinerario</h3>
       </AnimatedSection>
-      <img
+      <Image
         src="https://img.smartslides.com/gal/aws/4k/2x/199826/38e87abb5cba20b77edf2a8d0f8b98/e799b77405d0979f26c2.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1"
         alt="locations-section-background"
         width={1000}

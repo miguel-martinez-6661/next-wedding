@@ -35,11 +35,11 @@ function getSheetsClient() {
 //
 // Example: Basic in-memory cache (not shared across serverless instances, just for illustration):
 
-const _sheetDataCache = new Map<
-  string,
-  { data: any; error: any; timestamp: number }
->();
-const CACHE_TTL_MS = 60 * 60 * 1000; // cache for 1 hour
+// const _sheetDataCache = new Map<
+//   string,
+//   { data: any; error: any; timestamp: number }
+// >();
+// const CACHE_TTL_MS = 60 * 60 * 1000; // cache for 1 hour
 
 // export async function getSheetDataCached(
 //   spreadsheetId: string,

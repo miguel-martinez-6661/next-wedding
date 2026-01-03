@@ -1,7 +1,5 @@
-import {
-  CheckCircleIcon,
-  FrownIcon,
-} from "lucide-react";
+import Image from "next/image";
+import { CheckCircleIcon, FrownIcon } from "lucide-react";
 
 type ConfirmationProps = {
   name: string;
@@ -40,7 +38,7 @@ export const RsvpConfirmation = ({
           <p className="text-lg font-cormorant text-gray-700 mt-4 text-center">
             ¡Te esperamos con mucha ilusión!
           </p>
-          <img src={qrCode} alt="qr-code" width={200} height={200} />
+          <Image src={qrCode} alt="qr-code" width={200} height={200} />
         </>
       ) : (
         <>

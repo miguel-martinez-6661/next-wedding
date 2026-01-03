@@ -11,7 +11,9 @@ import { Guest } from "@/types";
 export default function ScanPage() {
   const [scanning, setScanning] = useState(false);
   const [scannedData, setScannedData] = useState<string | null>(null);
-  const [guest, setGuest] = useState<(Guest & { isConfirmed: boolean }) | null>(null);
+  const [guest, setGuest] = useState<(Guest & { isConfirmed: boolean }) | null>(
+    null
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoadingGuest, setIsLoadingGuest] = useState(false);
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
@@ -101,12 +103,14 @@ export default function ScanPage() {
             setScannedData(decodedText);
             setScanning(false);
             await cleanupScanner();
-            
+
             // Fetch guest information
             setIsLoadingGuest(true);
             try {
-              const response = await fetch(`/api/invite?code=${encodeURIComponent(decodedText)}`);
-              
+              const response = await fetch(
+                `/api/invite?code=${encodeURIComponent(decodedText)}`
+              );
+
               if (response.ok) {
                 const guestData = await response.json();
                 setGuest(guestData);
@@ -123,7 +127,7 @@ export default function ScanPage() {
               setIsLoadingGuest(false);
             }
           },
-          (errorMessage) => {
+          (_errorMessage) => {
             // Error callback - don't show errors, they're just scanning attempts
           }
         );
@@ -144,7 +148,6 @@ export default function ScanPage() {
         cleanupScanner();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scanning]);
 
   const stopScan = async () => {
@@ -289,7 +292,7 @@ export default function ScanPage() {
           <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1 pt-4 border-t border-gray-200 dark:border-gray-700">
             <p className="font-semibold">Instrucciones:</p>
             <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>Haz clic en "Iniciar Escáner"</li>
+              <li>Haz clic en &quot;Iniciar Escáner&quot;</li>
               <li>Permite el acceso a la cámara cuando se solicite</li>
               <li>Apunta la cámara hacia el código QR</li>
               <li>El código se escaneará automáticamente</li>
@@ -311,7 +314,9 @@ export default function ScanPage() {
       {isLoadingGuest && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <p className="text-gray-900 dark:text-white">Cargando información...</p>
+            <p className="text-gray-900 dark:text-white">
+              Cargando información...
+            </p>
           </div>
         </div>
       )}

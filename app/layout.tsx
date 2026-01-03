@@ -43,9 +43,22 @@ const ephesis = Ephesis({
 export const metadata: Metadata = {
   title: "M&R",
   description: "Boda de Miguel y Romina",
-  icons: {
-    icon: "/wedding.ico",
-  },
+  icons: [
+    {
+      rel: "icon",
+      url: "/wedding.ico",
+      type: "image/x-icon",
+    },
+    {
+      rel: "shortcut icon",
+      url: "/wedding.ico",
+      type: "image/x-icon",
+    },
+    {
+      rel: "apple-touch-icon",
+      url: "/wedding.ico",
+    },
+  ],
   openGraph: {
     title: "M&R",
     description: "Boda de Miguel y Romina",

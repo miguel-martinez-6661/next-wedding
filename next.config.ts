@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "img.smartslides.com",
       },
+      {
+        protocol: "https",
+        hostname: "api.qrserver.com",
+      }
     ],
   },
 };

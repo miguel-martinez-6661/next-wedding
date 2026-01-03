@@ -10,7 +10,7 @@ export const DetailsSection = () => {
         <h3 className="font-ephesis text-6xl mt-8 text-center">Itinerario</h3>
       </AnimatedSection>
       <Image
-        src="https://img.smartslides.com/gal/aws/4k/2x/199826/38e87abb5cba20b77edf2a8d0f8b98/e799b77405d0979f26c2.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1"
+        src="https://img.smartslides.com/gal/aws/4k/2x/199826/38e87abb5cba20b77edf2a8d0f8b98/e799b77405d0979f26c2.jpg"
         alt="locations-section-background"
         width={1000}
         height={1000}
@@ -22,7 +22,11 @@ export const DetailsSection = () => {
           <div className="flex items-center justify-center">
             <div className="flex-1 flex flex-col items-end">
               <span className="font-serif text-xl">18:00hs</span>
-              <h4 className="font-cormorant text-right">Ceremonia Religiosa</h4>
+              <h4 className="font-cormorant text-sm md:text-base text-right">
+                Ceremonia
+                <br />
+                Religiosa
+              </h4>
             </div>
             <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />
             <div className="flex-1">

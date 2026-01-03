@@ -23,10 +23,10 @@ export const DetailsSection = () => {
         <AnimatedSection delay={0.3} direction="right">
           <div className="flex items-center justify-center">
             <div className="flex-1 flex flex-col items-end">
-              <span className="font-serif text-xl">18:30hs</span>
-              <h4 className="font-cormorant font-bold text-right">Ceremonia Religiosa</h4>
+              <span className="font-serif text-xl">18:00hs</span>
+              <h4 className="font-cormorant text-right">Ceremonia Religiosa</h4>
             </div>
-            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />
             <div className="flex-1">
               <Image
                 src="/church-icon.png"
@@ -49,7 +49,7 @@ export const DetailsSection = () => {
                 height={100}
               />
             </div>
-            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />
             <div className="flex-1 flex flex-col items-start">
               <span className="font-serif text-xl">19:00hs</span>
               <h4 className="font-cormorant text-sm md:text-base">Recepción</h4>
@@ -64,7 +64,7 @@ export const DetailsSection = () => {
               <span className="font-serif text-xl">19:30hs</span>
               <h4 className="font-cormorant text-sm md:text-lg">Boda Civil</h4>
             </div>
-            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />
             <div className="flex-1">
               <Image
                 src="/ring-icon.png"
@@ -87,7 +87,7 @@ export const DetailsSection = () => {
                 height={100}
               />
             </div>
-            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />
             <div className="flex-1 flex flex-col items-start">
               <span className="font-serif text-xl">20:00hs</span>
               <h4 className="font-cormorant text-sm md:text-base">

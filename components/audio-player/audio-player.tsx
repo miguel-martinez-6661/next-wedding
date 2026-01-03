@@ -45,17 +45,17 @@ export function AudioPlayer() {
   }, []);
 
   return (
-    <div className="fixed bottom-4 left-4 z-50 bg-white/70 rounded-full shadow-lg p-2 flex items-center justify-center border border-gray-200">
-      <audio
-        ref={audioRef}
-        src="/music.mp3"
-        loop
-        controls
-        playsInline
-        className="w-40"
-        autoPlay
-        style={{ minWidth: 140, background: "transparent" }}
-      />
-    </div>
+    // <div className="fixed bottom-4 left-4 z-50 bg-white/70 rounded-full shadow-lg p-2 flex items-center justify-center border border-gray-200">
+    <audio
+      ref={audioRef}
+      src="/music.mp3"
+      loop
+      controls
+      playsInline
+      className="w-10 hidden"
+      autoPlay
+      style={{ background: "transparent" }}
+    />
+    // </div>
   );
 }

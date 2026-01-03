@@ -35,14 +35,15 @@ export default async function Home({
     <div className="w-full min-h-screen bg-gray-50/50">
       <main className="max-w-6xl mx-auto overflow-hidden bg-white">
         <BannerSection
-          imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/fd3329cc581aca2cf53cdeb50508e1/da41649f165656a5de3c.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1"
+          imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/fd3329cc581aca2cf53cdeb50508e1/da41649f165656a5de3c.jpg"
           // y={30}
           className="-mt-14 md:-mt-40"
         />
         <HeroSection />
-        <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/200612d0a1adee84ea9d7a616a4845/5dd1f2a706ed7a797cbe.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1" />
+        <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/200612d0a1adee84ea9d7a616a4845/5dd1f2a706ed7a797cbe.jpg" />
         <DateSection targetDate={new Date("2026-02-07T20:00:00")} />
-        <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/374353ef08a78837150a75971b5c93/951c4406b179801f4ed8.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1" />
+        <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/374353ef08a78837150a75971b5c93/951c4406b179801f4ed8.jpg" />
+
         <AnimatedSection delay={0.2}>
           <DetailsSection />
         </AnimatedSection>

@@ -41,7 +41,7 @@ export default async function Home({
         />
         <HeroSection />
         <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/374353ef08a78837150a75971b5c93/951c4406b179801f4ed8.jpg" />
-        <DateSection targetDate={new Date("2026-02-07T20:00:00")} />
+        <DateSection targetDate={new Date("2026-02-07T18:00:00")} />
         <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/2908c5a22e47bdad21f60aaab1c26b/6f29f436ec6398b6e189.jpg" />
 
         <AnimatedSection delay={0.2}>

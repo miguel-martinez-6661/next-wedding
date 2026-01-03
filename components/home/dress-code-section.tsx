@@ -2,14 +2,14 @@ import Image from "next/image";
 
 export function DressCodeSection() {
   return (
-    <div className="mb-24 gap-4 py-24 relative">
-      <Image
+    <div className="gap-4 py-24 relative">
+      {/* <Image
         src="/texture-1.jpg"
         alt="locations-section-background"
         width={1000}
         height={1000}
         className="absolute top-0 left-0 w-full h-full object-cover opacity-20 z-0"
-      />
+      /> */}
       <div className="flex flex-col items-center justify-center z-10">
         <h1 className="font-ephesis text-center text-6xl">Dress Code</h1>
         <p className="text-center font-cormorant text-2xl">Formal</p>

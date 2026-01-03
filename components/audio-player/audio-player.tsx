@@ -53,6 +53,7 @@ export function AudioPlayer() {
         controls
         playsInline
         className="w-40"
+        autoPlay
         style={{ minWidth: 140, background: "transparent" }}
       />
     </div>

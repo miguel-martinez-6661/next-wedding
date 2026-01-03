@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import { submitRsvp } from "@/lib/invite";
+import { RsvpConfirmation } from "./confirmation";
 
 type RsvpFormProps = {
   name: string;
@@ -20,6 +21,7 @@ type RsvpFormProps = {
   going: boolean | null;
   numberOfGuests: number;
   maxNumberOfGuests: number;
+  qrCode: string;
 };
 
 export const RsvpForm = ({
@@ -28,10 +30,12 @@ export const RsvpForm = ({
   going,
   numberOfGuests,
   maxNumberOfGuests,
+  qrCode,
 }: RsvpFormProps) => {
   const [isGoing, setIsGoing] = useState<boolean | null>(going);
   const [guests, setGuests] = useState<number>(numberOfGuests);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleGuestChange = (value: string) => {
     setGuests(Number(value));
@@ -64,9 +68,11 @@ export const RsvpForm = ({
         going: isGoing,
         numberOfGuests: isGoing ? guests : 0,
         maxNumberOfGuests,
+        qrCode,
       });
 
       if (result.success) {
+        setIsSubmitted(true);
         toast.success("¡Asistencia confirmada! Gracias por responder.");
       } else {
         toast.error(result.error || "Error al enviar la confirmación");
@@ -79,9 +85,20 @@ export const RsvpForm = ({
     }
   };
 
+  // Show confirmation if form was submitted successfully
+  if (isSubmitted) {
+    return (
+      <RsvpConfirmation
+        name={name}
+        going={isGoing || false}
+        numberOfGuests={isGoing ? guests : 0}
+        qrCode={qrCode}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col w-full gap-8 items-center">
-      {/* <h2 className="text-xl text-center font-cormorant">Por favor, confirma tu asistencia</h2> */}
       <h2 className="text-6xl text-center mb-2 font-ephesis">
         Confirmar Asistencia
       </h2>

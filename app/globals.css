@@ -133,7 +133,7 @@
   [class*="transition"] {
     transition-duration: 1000ms !important;
   }
-  
+
   /* Slow down animations */
   [class*="animate"]:not([class*="animate-spin"]) {
     animation-duration: 2s !important;
@@ -152,4 +152,22 @@
 
 .font-ephesis {
   font-family: var(--font-ephesis);
+}
+
+#html5-qrcode-button-camera-start,
+#html5-qrcode-button-camera-stop {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: 1px solid var(--primary) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  &:hover {
+    background-color: var(--primary-foreground) !important;
+    color: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
+  }
 }

@@ -1,7 +1,9 @@
 export type Guest = {
   inviteCode: string;
   name: string;
-  going: boolean;
+  going: boolean | null;
   numberOfGuests: number;
   maxNumberOfGuests: number;
+  qrCode: string;
+  isConfirmed?: boolean;
 };

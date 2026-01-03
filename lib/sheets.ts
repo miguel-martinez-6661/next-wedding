@@ -30,9 +30,39 @@ function getSheetsClient() {
 /**
  * Get data from a Google Sheet
  */
+// Yes, you can cache the result of this call (getSheetData), especially if your sheet data does not change frequently or you want to reduce API calls and improve performance.
+// In a serverless environment (like Next.js "use server"), you can use an in-memory cache like a simple Map for the server session, or a more persistent cache like Redis for longer-term caching.
+//
+// Example: Basic in-memory cache (not shared across serverless instances, just for illustration):
+
+const _sheetDataCache = new Map<
+  string,
+  { data: any; error: any; timestamp: number }
+>();
+const CACHE_TTL_MS = 60 * 60 * 1000; // cache for 1 hour
+
+// export async function getSheetDataCached(
+//   spreadsheetId: string,
+//   range: string = "RSVP!A3:F47"
+// ) {
+//   const cacheKey = `${spreadsheetId}:${range}`;
+//   const cached = _sheetDataCache.get(cacheKey);
+//   const now = Date.now();
+
+//   if (cached && now - cached.timestamp < CACHE_TTL_MS) {
+//     return cached;
+//   }
+
+//   const result = await getSheetData(spreadsheetId, range);
+//   _sheetDataCache.set(cacheKey, { ...result, timestamp: now });
+//   return result;
+// }
+
+// Note: For production, use an external cache like Redis if you need persistence across serverless instances.
+
 export async function getSheetData(
   spreadsheetId: string,
-  range: string = "RSVP!A3:E37"
+  range: string = "RSVP!A3:F47"
 ) {
   try {
     const sheets = getSheetsClient();
@@ -130,18 +160,18 @@ export async function updateRsvpInSheet(
       return { success: false, error: "No data found in sheet" };
     }
 
-    // Find the row index (skip header row at index 0)
-    const rowIndex = allData.data.values.findIndex(
-      (row, index) => index > 0 && row[0] === inviteCode
+    // Find the row index in the array (data starts at row 3, so array index 0 = sheet row 3)
+    const arrayIndex = allData.data.values.findIndex(
+      (row) => row[0] === inviteCode
     );
 
-    // if (rowIndex === -1) {
-    //   // If not found, append instead
-    //   return appendRsvpToSheet(spreadsheetId, sheetName, data);
-    // }
+    if (arrayIndex === -1) {
+      return { success: false, error: "Invite code not found in sheet" };
+    }
 
-    // Update the row (rowIndex + 1 because sheets are 1-indexed)
-    const range = `${sheetName}!A${rowIndex + 1}:E${rowIndex + 1}`;
+    // Calculate the actual sheet row number (array index 0 = sheet row 3)
+    const sheetRowNumber = arrayIndex + 3;
+    const range = `${sheetName}!A${sheetRowNumber}:E${sheetRowNumber}`;
     await sheets.spreadsheets.values.update({
       spreadsheetId,
       range,

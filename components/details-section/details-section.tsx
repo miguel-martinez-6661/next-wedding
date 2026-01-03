@@ -1,14 +1,18 @@
 import Image from "next/image";
 import { AnimatedSection } from "@/components/animated-section/animated-section";
+import { LocationsSection } from "../home/locations-section";
 
 export const DetailsSection = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center pt-10 relative">
+    <div className="w-full flex flex-col items-center justify-center relative -mt-32 pt-32">
+      <AnimatedSection delay={0.2}>
+        <LocationsSection />
+      </AnimatedSection>
       <AnimatedSection delay={0.3}>
         <h3 className="font-ephesis text-6xl mt-8 text-center">Itinerario</h3>
       </AnimatedSection>
-      <Image
-        src="/texture-1.jpg"
+      <img
+        src="https://img.smartslides.com/gal/aws/4k/2x/199826/38e87abb5cba20b77edf2a8d0f8b98/e799b77405d0979f26c2.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1"
         alt="locations-section-background"
         width={1000}
         height={1000}
@@ -19,26 +23,16 @@ export const DetailsSection = () => {
         <AnimatedSection delay={0.3} direction="right">
           <div className="flex items-center justify-center">
             <div className="flex-1 flex flex-col items-end">
-              <span className="font-serif text-xl">20:00hs</span>
-              <h4 className="font-cormorant font-bold text-right">Ceremonia</h4>
-              {/* <p className="text-xs md:text-sm">Parroquia San Cristobal</p>
-              <Link
-                className="flex items-center gap-2 border p-2 border-gray-600 rounded-sm mt-2"
-                href="https://maps.app.goo.gl/bkiWZh3Ykf9Pcbum7"
-                target="_blank"
-              >
-                <span className="text-xs md:text-sm">Ubicación</span>
-                <MapPinIcon className="w-4 h-4 text-gray-400" />
-              </Link> */}
+              <span className="font-serif text-xl">18:30hs</span>
+              <h4 className="font-cormorant font-bold text-right">Ceremonia Religiosa</h4>
             </div>
-            <div className="mx-8 w-2 h-2 bg-green-900 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
             <div className="flex-1">
               <Image
                 src="/church-icon.png"
                 alt="icon-3"
                 width={100}
                 height={100}
-                className="motion-safe:animate-bounce"
               />
             </div>
           </div>
@@ -53,27 +47,12 @@ export const DetailsSection = () => {
                 alt="icon-3"
                 width={100}
                 height={100}
-                className="animate-bounce"
               />
             </div>
-            <div className="mx-8 w-2 h-2 bg-green-900 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
             <div className="flex-1 flex flex-col items-start">
-              <span className="font-serif text-xl">21:00hs</span>
+              <span className="font-serif text-xl">19:00hs</span>
               <h4 className="font-cormorant text-sm md:text-base">Recepción</h4>
-              {/* <p className="text-xs md:text-sm">
-                Jardines de la Sede Social de Jubilados Bancarios
-              </p>
-              <p className="text-xs md:text-sm">
-                Av. Sta. Teresa, Asunción 001402
-              </p>
-              <Link
-                className="flex items-center gap-2 border p-2 border-gray-600 rounded-sm mt-2"
-                href="https://maps.app.goo.gl/nkeUtWwcTbWFKe5N8"
-                target="_blank"
-              >
-                <MapPinIcon className="w-4 h-4 text-gray-400" />
-                <span className="text-xs md:text-sm">Ubicación</span>
-              </Link> */}
             </div>
           </div>
         </AnimatedSection>
@@ -82,31 +61,16 @@ export const DetailsSection = () => {
         <AnimatedSection delay={0.5} direction="right">
           <div className="flex items-center justify-center">
             <div className="flex-1 flex flex-col items-end">
-              <span className="font-serif text-xl">22:00hs</span>
+              <span className="font-serif text-xl">19:30hs</span>
               <h4 className="font-cormorant text-sm md:text-lg">Boda Civil</h4>
-              {/* <p className="text-xs md:text-sm text-right">
-                Salon principal de la Sede Social de Jubilados Bancarios
-              </p>
-              <p className="text-xs md:text-sm text-right">
-                Av. Sta. Teresa, Asunción 001402
-              </p>
-              <Link
-                className="flex items-center gap-2 border p-2 border-gray-600 rounded-sm mt-2"
-                href="https://maps.app.goo.gl/5o51t8W8H4Q5bB9u6"
-                target="_blank"
-              >
-                <MapPinIcon className="w-4 h-4 text-gray-400" />
-                <span className="text-xs md:text-sm">Ubicación</span>
-              </Link> */}
             </div>
-            <div className="mx-8 w-2 h-2 bg-green-900 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
             <div className="flex-1">
               <Image
                 src="/ring-icon.png"
                 alt="icon-3"
                 width={100}
                 height={100}
-                className="animate-bounce"
               />
             </div>
           </div>
@@ -121,35 +85,20 @@ export const DetailsSection = () => {
                 alt="icon-3"
                 width={100}
                 height={100}
-                className="animate-bounce"
               />
             </div>
-            <div className="mx-8 w-2 h-2 bg-green-900 rounded-full z-10" />
+            <div className="mx-8 w-2 h-2 bg-black/50 rounded-full z-10" />
             <div className="flex-1 flex flex-col items-start">
-              <span className="font-serif text-xl">22:30hs</span>
+              <span className="font-serif text-xl">20:00hs</span>
               <h4 className="font-cormorant text-sm md:text-base">
                 Celebración
               </h4>
-              {/* <p className="text-xs md:text-sm">
-                Salon principal de la Sede Social de Jubilados Bancarios
-              </p>
-              <p className="text-xs md:text-sm">
-                Av. Sta. Teresa, Asunción 001402
-              </p>
-              <Link
-                className="flex items-center gap-2 border p-2 border-gray-600 rounded-sm mt-2"
-                href="https://maps.app.goo.gl/5o51t8W8H4Q5bB9u6"
-                target="_blank"
-              >
-                <MapPinIcon className="w-4 h-4 text-gray-400" />
-                <span className="text-xs md:text-sm">Ubicación</span>
-              </Link> */}
             </div>
           </div>
         </AnimatedSection>
 
         {/* Divider vertical */}
-        <div className="absolute w-[1px] bg-gray-200 top-4 bottom-4 left-1/2 -translate-x-1/2"></div>
+        <div className="absolute w-[0.5px] bg-black/50 top-4 bottom-4 left-1/2 -translate-x-1/2"></div>
       </div>
     </div>
   );

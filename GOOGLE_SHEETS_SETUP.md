@@ -122,6 +122,8 @@ The app will automatically create headers if the sheet is empty:
 - Column B: Código de Invitación
 - Column C: Asistirá
 - Column D: Número de Invitados
+- Column E: Confirmado
+- Column F: Codigo QR
 
 You can manually add these headers or let the app create them automatically.
 

@@ -8,14 +8,14 @@ import { getInviteByCode } from "@/lib/invite";
 import { MessageCircleWarningIcon } from "lucide-react";
 import { DetailsSection } from "@/components/details-section/details-section";
 import { DressCodeSection } from "@/components/home/dress-code-section";
-import { LocationsSection } from "@/components/home/locations-section";
+import { EnvelopeWrapper } from "@/components/envelop-modal/envelope-wrapper";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: { rsvp: string };
 }) {
-  const rsvpId = (await searchParams)?.rsvp;
+  const rsvpId = searchParams?.rsvp || "";
   const guest = await getInviteByCode(rsvpId);
 
   if (!rsvpId || !guest.inviteCode) {
@@ -31,34 +31,39 @@ export default async function Home({
     );
   }
 
-  return (
+  const content = (
     <div className="w-full min-h-screen bg-gray-50/50">
-      <main className="max-w-6xl mx-auto overflow-hidden pb-24 bg-white">
-        <BannerSection imgSrc="/bg-0.jpg" y={30} className="-mt-14 md:-mt-40" />
+      <main className="max-w-6xl mx-auto overflow-hidden bg-white">
+        <BannerSection
+          imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/fd3329cc581aca2cf53cdeb50508e1/da41649f165656a5de3c.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1"
+          // y={30}
+          className="-mt-14 md:-mt-40"
+        />
         <HeroSection />
-        <BannerSection imgSrc="/image.png" />
+        <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/200612d0a1adee84ea9d7a616a4845/5dd1f2a706ed7a797cbe.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1" />
         <DateSection targetDate={new Date("2026-02-07T20:00:00")} />
-        <BannerSection imgSrc="/image.png" />
-        <AnimatedSection delay={0.2}>
-          <LocationsSection />
-        </AnimatedSection>
+        <BannerSection imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/374353ef08a78837150a75971b5c93/951c4406b179801f4ed8.jpg?width=1680&height=1050&sharp_amount=65&sharp_radius=1" />
         <AnimatedSection delay={0.2}>
           <DetailsSection />
         </AnimatedSection>
         <AnimatedSection delay={0.2}>
           <DressCodeSection />
         </AnimatedSection>
-        <AnimatedSection delay={0.3}>
+        <AnimatedSection delay={0.1}>
           <Rsvp
             inviteCode={guest.inviteCode}
             name={guest.name}
             going={guest.going}
             numberOfGuests={guest.numberOfGuests}
             maxNumberOfGuests={guest.maxNumberOfGuests}
+            qrCode={guest.qrCode}
+            isConfirmed={guest.isConfirmed}
           />
         </AnimatedSection>
         <ClosingSection />
       </main>
     </div>
   );
+
+  return <EnvelopeWrapper guest={guest}>{content}</EnvelopeWrapper>;
 }

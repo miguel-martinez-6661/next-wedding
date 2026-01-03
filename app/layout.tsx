@@ -61,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${allura.variable} ${cormorantGaramond.variable} ${ephesis.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${allura.variable} ${cormorantGaramond.variable} ${ephesis.variable} antialiased bg-accent/60`}
       >
         {children}
         <Toaster />

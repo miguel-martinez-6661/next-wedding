@@ -47,7 +47,7 @@ export function CountdownSection({ targetDate }: CountdownSectionProps) {
     <div className="relative w-full">
       <div className="relative text-center">
         <div className="my-6">
-          <h1 className="text-sm font-cormorant my-2 font-bold">¡PREPARATE!</h1>
+          {/* <h1 className="text-sm font-cormorant my-2 font-bold">¡PREPARATE!</h1> */}
           <h1 className="text-4xl font-ephesis my-2">Nos vemos dentro de</h1>
         </div>
 
@@ -71,10 +71,10 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="text-3xl md:text-3xl font-serif tabular-nums leading-none mb-4">
+      <div className="text-4xl font-serif tabular-nums leading-none mb-4">
         {formatNumber(value)}
       </div>
-      <div className="text-xs md:text-base tracking-[0.2em] font-serif">
+      <div className="text-xs font-serif">
         {label}
       </div>
     </div>

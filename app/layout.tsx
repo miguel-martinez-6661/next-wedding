@@ -12,11 +12,15 @@ import { Toaster } from "@/components/ui/sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Not critical for first paint
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Not critical for first paint
 });
 
 const allura = Allura({
@@ -24,6 +28,7 @@ const allura = Allura({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-allura",
+  preload: false,
 });
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -31,6 +36,7 @@ const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-cormorant-garamond",
+  preload: true, // Critical font used in hero
 });
 
 const ephesis = Ephesis({
@@ -38,6 +44,7 @@ const ephesis = Ephesis({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-ephesis",
+  preload: true, // Critical font used in hero
 });
 
 export const metadata: Metadata = {
@@ -86,6 +93,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    "dns-prefetch": "https://img.smartslides.com https://api.qrserver.com",
+  },
 };
 
 export default function RootLayout({
@@ -95,6 +105,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <link
+          rel="preconnect"
+          href="https://img.smartslides.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://api.qrserver.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${allura.variable} ${cormorantGaramond.variable} ${ephesis.variable} antialiased bg-accent/60`}
       >

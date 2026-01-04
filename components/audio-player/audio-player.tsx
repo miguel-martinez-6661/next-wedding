@@ -84,6 +84,7 @@ export function AudioPlayer() {
       playsInline
       className="w-10 hidden"
       autoPlay
+      preload="metadata"
       style={{ background: "transparent" }}
     />
     // </div>

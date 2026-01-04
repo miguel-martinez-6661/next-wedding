@@ -1,8 +1,14 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import { AnimatedSection } from "@/components/animated-section/animated-section";
-import { AudioPlayer } from "@/components/audio-player/audio-player";
 import { SectionContainer } from "@/components/section-container/section-container";
+
+// Lazy load audio player as it's not critical for first paint
+const AudioPlayer = dynamic(
+  () => import("@/components/audio-player/audio-player").then((mod) => ({ default: mod.AudioPlayer })),
+  { ssr: true }
+);
 
 export function ClosingSection() {
   return (
@@ -13,6 +19,8 @@ export function ClosingSection() {
         alt="flower-1"
         width={1000}
         height={1000}
+        loading="lazy"
+        fetchPriority="low"
       />
       <div className="flex flex-col items-center z-10 md:scale-150">
         <AnimatedSection delay={0.2} direction="right">
@@ -28,6 +36,7 @@ export function ClosingSection() {
               width={240}
               height={240}
               className="object-contain scale-150"
+              loading="lazy"
             />
           </AnimatedSection>
         </div>

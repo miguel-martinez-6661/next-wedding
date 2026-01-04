@@ -12,6 +12,8 @@ export function HeroSection() {
         alt="flower-1"
         width={600}
         height={800}
+        priority
+        loading="eager"
       />
       <Image
         className="absolute -top-30 -right-40 opacity-90 rotate-180 w-[320px] h-[480px] md:w-[600px] md:h-[800px]"
@@ -20,6 +22,8 @@ export function HeroSection() {
         width={600}
         height={800}
         objectFit="contain"
+        priority
+        loading="eager"
       />
       <div className="flex flex-col items-center z-10 md:scale-200">
         <AnimatedSection delay={0.2} direction="down" className="mb-8">

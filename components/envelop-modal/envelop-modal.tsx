@@ -85,6 +85,7 @@ export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
           autoPlay
           muted
           playsInline
+          preload="auto"
           onError={handleVideoError}
           onClick={handleClick}
         />
@@ -95,6 +96,7 @@ export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
           autoPlay
           muted
           playsInline
+          preload="auto"
           onError={handleVideoError}
           onClick={handleClick}
         />

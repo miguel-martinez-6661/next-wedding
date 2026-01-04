@@ -19,12 +19,14 @@ export function DressCodeSection() {
             alt="dress-code-1"
             width={120}
             height={120}
+            loading="lazy"
           />
           <Image
             src="/dress-icon.png"
             alt="dress-code-1"
             width={120}
             height={120}
+            loading="lazy"
           />
         </div>
         <div className="font-cormorant rounded-lg p-4">

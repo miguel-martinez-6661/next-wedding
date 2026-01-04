@@ -1,14 +1,32 @@
 import { AnimatedSection } from "@/components/animated-section/animated-section";
 import { BannerSection } from "@/components/home/banner-section";
-import { ClosingSection } from "@/components/home/closing-section";
 import { DateSection } from "@/components/home/date-section";
 import { HeroSection } from "@/components/home/hero-section";
-import { Rsvp } from "@/components/rsvp/rsvp";
 import { getInviteByCode } from "@/lib/invite";
 import { MessageCircleWarningIcon } from "lucide-react";
-import { DetailsSection } from "@/components/details-section/details-section";
-import { DressCodeSection } from "@/components/home/dress-code-section";
 import { EnvelopeWrapper } from "@/components/envelop-modal/envelope-wrapper";
+import dynamic from "next/dynamic";
+
+// Lazy load below-the-fold components
+const ClosingSection = dynamic(
+  () => import("@/components/home/closing-section").then((mod) => ({ default: mod.ClosingSection })),
+  { ssr: true }
+);
+
+const Rsvp = dynamic(
+  () => import("@/components/rsvp/rsvp").then((mod) => ({ default: mod.Rsvp })),
+  { ssr: true }
+);
+
+const DetailsSection = dynamic(
+  () => import("@/components/details-section/details-section").then((mod) => ({ default: mod.DetailsSection })),
+  { ssr: true }
+);
+
+const DressCodeSection = dynamic(
+  () => import("@/components/home/dress-code-section").then((mod) => ({ default: mod.DressCodeSection })),
+  { ssr: true }
+);
 
 export default async function Home({
   searchParams,

@@ -15,6 +15,8 @@ export const DetailsSection = () => {
         width={1000}
         height={1000}
         className="absolute top-0 left-0 w-full h-full object-cover opacity-20 z-0"
+        loading="lazy"
+        fetchPriority="low"
       />
       <div className="w-full relative z-20 space-y-16 my-8 py-8">
         {/* Row 1 */}
@@ -35,6 +37,7 @@ export const DetailsSection = () => {
                 alt="icon-3"
                 width={100}
                 height={100}
+                loading="lazy"
               />
             </div>
           </div>
@@ -49,6 +52,7 @@ export const DetailsSection = () => {
                 alt="icon-3"
                 width={100}
                 height={100}
+                loading="lazy"
               />
             </div>
             <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />
@@ -73,6 +77,7 @@ export const DetailsSection = () => {
                 alt="icon-3"
                 width={100}
                 height={100}
+                loading="lazy"
               />
             </div>
           </div>
@@ -87,6 +92,7 @@ export const DetailsSection = () => {
                 alt="icon-3"
                 width={100}
                 height={100}
+                loading="lazy"
               />
             </div>
             <div className="mx-8 w-2 h-2 bg-black rounded-full z-10" />

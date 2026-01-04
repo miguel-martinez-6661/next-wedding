@@ -2,6 +2,7 @@
 
 import { Guest } from "@/types";
 import { google } from "googleapis";
+import { SHEET_RANGE } from "./utils";
 
 // Initialize Google Sheets client
 function getSheetsClient() {
@@ -62,7 +63,7 @@ function getSheetsClient() {
 
 export async function getSheetData(
   spreadsheetId: string,
-  range: string = "RSVP!A3:F47"
+  range: string = SHEET_RANGE
 ) {
   try {
     const sheets = getSheetsClient();
@@ -143,7 +144,6 @@ export async function appendRsvpToSheet(
  */
 export async function updateRsvpInSheet(
   spreadsheetId: string = process.env.GOOGLE_SPREADSHEET_ID!,
-  sheetName: string,
   inviteCode: string,
   data: Guest
 ) {
@@ -153,7 +153,7 @@ export async function updateRsvpInSheet(
     // First, find the row with this invite code
     const allData = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: `${sheetName}!A3:E37`,
+      range: SHEET_RANGE,
     });
 
     if (!allData.data.values) {
@@ -171,7 +171,7 @@ export async function updateRsvpInSheet(
 
     // Calculate the actual sheet row number (array index 0 = sheet row 3)
     const sheetRowNumber = arrayIndex + 3;
-    const range = `${sheetName}!A${sheetRowNumber}:E${sheetRowNumber}`;
+    const range = `RSVP!A${sheetRowNumber}:E${sheetRowNumber}`;
     await sheets.spreadsheets.values.update({
       spreadsheetId,
       range,

@@ -1,19 +1,17 @@
 import { Guest } from "@/types";
 import { getSheetData, updateRsvpInSheet } from "./sheets";
+import { SHEET_RANGE } from "./utils";
 
 export const getInviteByCode = async (
   code: string
 ): Promise<Guest & { isConfirmed: boolean }> => {
   const response = code
-    ? await getSheetData(
-        process.env.GOOGLE_SPREADSHEET_ID!,
-        "RSVP!A3:F47"
-      )
+    ? await getSheetData(process.env.GOOGLE_SPREADSHEET_ID!, SHEET_RANGE)
     : { data: null, error: null };
 
   const [inviteCode, name, maxNumberOfGuests, going, numberOfGuests, qrCode] =
     response?.data?.find((row: string[]) => row[0] === code) || [];
-  
+
   // Check if RSVP is confirmed (going field has a value)
   const isConfirmed = going === "Si" || going === "No";
 
@@ -38,7 +36,6 @@ export const submitRsvp = async (data: {
 }) => {
   return await updateRsvpInSheet(
     process.env.GOOGLE_SPREADSHEET_ID!,
-    "RSVP",
     data.inviteCode,
     {
       inviteCode: data.inviteCode,
@@ -46,7 +43,7 @@ export const submitRsvp = async (data: {
       going: data.going,
       numberOfGuests: data.numberOfGuests,
       maxNumberOfGuests: data.maxNumberOfGuests,
-      qrCode: data.qrCode
+      qrCode: data.qrCode,
     }
   );
 };

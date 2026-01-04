@@ -69,6 +69,15 @@ export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
             </p>
           </AnimatedSection>
         </div>
+        <div className="absolute bottom-[25%] md:bottom-[18%] left-1/2 -translate-x-1/2 -translate-y-1/2 font-ephesis flex flex-col items-center justify-center gap-6">
+          <p className="text-xl md:text-3xl text-center">
+            Válido para:{" "}
+            <span>
+              {guest.maxNumberOfGuests}{" "}
+              {guest.maxNumberOfGuests === 1 ? "persona" : "personas"}
+            </span>
+          </p>
+        </div>
         <video
           ref={videoRef}
           src="/intro-mobile.mp4"

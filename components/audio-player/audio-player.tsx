@@ -80,6 +80,7 @@ export function AudioPlayer() {
     <audio
       ref={audioRef}
       src="/music.mp3"
+      loop
       controls
       playsInline
       className="w-10 hidden"

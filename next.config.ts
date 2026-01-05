@@ -11,7 +11,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "api.qrserver.com",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "www.tupi.com.py",
+      },
     ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,

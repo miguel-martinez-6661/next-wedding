@@ -9,7 +9,10 @@ import dynamic from "next/dynamic";
 
 // Lazy load below-the-fold components
 const ClosingSection = dynamic(
-  () => import("@/components/home/closing-section").then((mod) => ({ default: mod.ClosingSection })),
+  () =>
+    import("@/components/home/closing-section").then((mod) => ({
+      default: mod.ClosingSection,
+    })),
   { ssr: true }
 );
 
@@ -19,24 +22,33 @@ const Rsvp = dynamic(
 );
 
 const DetailsSection = dynamic(
-  () => import("@/components/details-section/details-section").then((mod) => ({ default: mod.DetailsSection })),
+  () =>
+    import("@/components/details-section/details-section").then((mod) => ({
+      default: mod.DetailsSection,
+    })),
   { ssr: true }
 );
 
 const DressCodeSection = dynamic(
-  () => import("@/components/home/dress-code-section").then((mod) => ({ default: mod.DressCodeSection })),
+  () =>
+    import("@/components/home/dress-code-section").then((mod) => ({
+      default: mod.DressCodeSection,
+    })),
   { ssr: true }
 );
 
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { rsvp: string };
+  searchParams: Promise<{ rsvp: string; showContent?: boolean }>;
 }) {
+  const byPassStarting = (await searchParams).showContent ?? false;
   const rsvpId = (await searchParams)?.rsvp || "";
   const guest = await getInviteByCode(rsvpId);
 
-  if (!rsvpId || !guest.inviteCode) {
+  const isValidGuestParam = rsvpId && guest.inviteCode;
+
+  if (!isValidGuestParam) {
     return (
       <div className="h-screen flex items-center justify-center ">
         <div className="border border-gray-300 rounded-lg p-4 mx-2 space-y-4">
@@ -51,7 +63,7 @@ export default async function Home({
 
   const content = (
     <div className="w-full min-h-screen bg-gray-50/50">
-      <main className="max-w-6xl mx-auto overflow-hidden bg-white">
+      <main className="max-w-6xl md:max-w-7xl mx-auto overflow-hidden bg-white">
         <BannerSection
           imgSrc="https://img.smartslides.com/gal/aws/4k/2x/199826/fd3329cc581aca2cf53cdeb50508e1/da41649f165656a5de3c.jpg"
           // y={30}
@@ -66,7 +78,7 @@ export default async function Home({
           <DetailsSection />
         </AnimatedSection>
         <AnimatedSection delay={0.2}>
-          <DressCodeSection />
+          <DressCodeSection rsvpCode={rsvpId} />
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
           <Rsvp
@@ -84,5 +96,9 @@ export default async function Home({
     </div>
   );
 
-  return <EnvelopeWrapper guest={guest}>{content}</EnvelopeWrapper>;
+  return (
+    <EnvelopeWrapper guest={guest} skipIntro={byPassStarting}>
+      {content}
+    </EnvelopeWrapper>
+  );
 }

@@ -7,10 +7,15 @@ import { Guest } from "@/types";
 interface EnvelopeWrapperProps {
   children: React.ReactNode;
   guest: Guest & { isConfirmed: boolean };
+  skipIntro?: boolean;
 }
 
-export function EnvelopeWrapper({ children, guest }: EnvelopeWrapperProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export function EnvelopeWrapper({
+  children,
+  guest,
+  skipIntro = false,
+}: EnvelopeWrapperProps) {
+  const [isOpen, setIsOpen] = useState(skipIntro);
 
   return (
     <>

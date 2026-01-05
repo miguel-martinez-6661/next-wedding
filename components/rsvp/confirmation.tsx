@@ -39,7 +39,7 @@ export const RsvpConfirmation = ({
         <>
           <div
             ref={componentRef}
-            className="flex flex-col h-full items-center justify-center gap-4"
+            className="flex flex-col h-full items-center justify-center gap-4 max-w-2xl mx-auto"
           >
             <div className="flex items-center justify-center mb-4">
               <CheckCircleIcon className="w-20 h-20 text-green-400" />
@@ -64,7 +64,7 @@ export const RsvpConfirmation = ({
               height={200}
               className="mt-8"
             />
-            <p className="text-lg text-gray-700 mt-4 text-center">
+            <p className="font-cormorant text-lg text-gray-700 mt-4 text-center">
               Presentar este QR en la recepción para ingresar a la boda.
             </p>
           </div>

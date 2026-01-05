@@ -1,15 +1,27 @@
 import Image from "next/image";
+import { GiftSection } from "./gift-section";
 
-export function DressCodeSection() {
+interface DressCodeSectionProps {
+  rsvpCode?: string;
+}
+
+export function DressCodeSection({ rsvpCode }: DressCodeSectionProps) {
   return (
     <div className="gap-4 py-24 relative">
-      {/* <Image
-        src="/texture-1.jpg"
-        alt="locations-section-background"
-        width={1000}
-        height={1000}
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-20 z-0"
-      /> */}
+      <Image
+        src="/flower-4.png"
+        alt="flower-4"
+        width={400}
+        height={400}
+        className="absolute top-0 -left-20 z-0 opacity-30 hidden md:block"
+      />
+      <Image
+        src="/flower-1.png"
+        alt="flower-1"
+        width={400}
+        height={400}
+        className="absolute top-0 -right-20 z-0 opacity-30"
+      />
       <div className="flex flex-col items-center justify-center z-10">
         <h1 className="font-ephesis text-center text-6xl">Dress Code</h1>
         <p className="text-center font-cormorant text-2xl">Formal</p>
@@ -47,6 +59,7 @@ export function DressCodeSection() {
           </div>
         </div>
       </div>
+      <GiftSection rsvpCode={rsvpCode} />
     </div>
   );
 }

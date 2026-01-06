@@ -26,13 +26,13 @@ const vendors: Vendor[] = [
     logo: "https://www.olier.com.py/assets_front/images/logo.svg",
     action: "Ver lista de regalos",
   },
-    {
-      name: "Amazon Gift",
-      clipboard: "mmartinez6661@gmail.com",
-      link: "https://www.amazon.com/Amazon-eGift-Card-Orange-Animated/dp/B004LLIKVU?th=1",
-      logo: "https://m.media-amazon.com/images/G/01/GiftCards/2025/Q4/VX-2825/Flyout_Nav_SendEGC_US-EN.png",
-      action: "Copiar Info y Enviar e-gift",
-    },
+  {
+    name: "Amazon Gift",
+    clipboard: "mmartinez6661@gmail.com",
+    link: "https://www.amazon.com/Amazon-eGift-Card-Orange-Animated/dp/B004LLIKVU?th=1",
+    logo: "https://m.media-amazon.com/images/I/61+nI2GbVCL.png",
+    action: "Copiar Info y Enviar e-gift",
+  },
 ];
 
 export default async function GiftListPage({
@@ -76,7 +76,7 @@ export default async function GiftListPage({
             </h1>
             <p className="font-cormorant text-lg md:text-xl text-gray-700 max-w-2xl mx-auto relative z-10">
               Lo más importante para nosotros es que nos acompañes en este día
-              tan especial. Pero si deseas dejarnos un detalle, aquí está
+              tan especial. Si deseas dejarnos un detalle, aquí encontrarás
               nuestra lista de regalos.
             </p>
           </div>
@@ -92,8 +92,9 @@ export default async function GiftListPage({
                     <Image
                       src={vendor.logo}
                       alt={vendor.name}
-                      width={100}
-                      height={100}
+                      width={80}
+                      height={80}
+                      className="object-contain"
                     />
                     <h3 className="font-ephesis text-3xl md:text-4xl text-[#37414c]">
                       {vendor.name}

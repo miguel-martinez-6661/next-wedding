@@ -31,12 +31,12 @@ export const GiftSection = ({ rsvpCode }: GiftSectionProps) => {
       <h1 className="font-ephesis text-center text-5xl md:text-6xl">Regalos</h1>
       <div className="font-cormorant text-lg md:text-xl text-center w-full max-w-2xl space-y-2">
         <p>
-          Lo mas importante para nosotros es que nos acompañes en este día tan
+          Lo más importante para nosotros es que nos acompañes en este día tan
           especial.
         </p>
         <p>
-          Pero si deseas dejarnos un detalle, te invitamos a ver nuestra lista
-          de regalos.
+          Si deseas dejarnos un detalle, aquí encontrarás nuestra lista de
+          regalos.
         </p>
       </div>
 

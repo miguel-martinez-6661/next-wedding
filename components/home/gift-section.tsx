@@ -41,20 +41,17 @@ export const GiftSection = ({ rsvpCode }: GiftSectionProps) => {
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 w-full max-w-4xl">
-        {/* Bank Account Card */}
         <div className="flex flex-col shadow-md p-6 md:p-8 w-full md:w-auto border border-gray-200 items-center bg-white z-10 rounded-3xl min-w-[280px] h-[220px]">
           <CreditCard className="w-12 h-12 md:w-16 md:h-16 text-gray-600 mb-4" />
           <h3 className="font-ephesis text-3xl md:text-4xl text-[#37414c] mb-4">
             Transferencia
           </h3>
-          <Button
-            variant="outline"
-            size="lg"
-            className="w-full mt-2 bg-black text-white hover:bg-gray-800 transition-colors cursor-pointer font-cormorant"
-            asChild
-          >
-            <CopyToClipboard title="Copiar alias" text="4693042-6" />
-          </Button>
+
+          <CopyToClipboard
+            title="Copiar alias"
+            text="4655118"
+            className="w-full mt-2 bg-black text-white transition-colors cursor-pointer font-cormorant"
+          />
         </div>
 
         {/* Gift List Card */}

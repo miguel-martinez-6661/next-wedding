@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, GiftIcon, ExternalLink, Clipboard } from "lucide-react";
 import { CopyToClipboard } from "@/components/copy-to-clipboard/copy-to-clipboard";
+import Image from "next/image";
 
 interface Vendor {
   name: string;
@@ -20,12 +21,18 @@ const vendors: Vendor[] = [
     action: "Ver lista de regalos",
   },
   {
-    name: "Amazon Gift",
-    clipboard: "mmartinez6661@gmail.com",
-    link: "https://www.amazon.com/Amazon-eGift-Card-Orange-Animated/dp/B004LLIKVU?th=1",
-    logo: "https://m.media-amazon.com/images/G/01/GiftCards/2025/Q4/VX-2825/Flyout_Nav_SendEGC_US-EN.png",
-    action: "Copiar Info y Enviar e-gift",
+    name: "Olier",
+    link: "https://www.olier.com.py/lista-bodas/ver/722",
+    logo: "https://www.olier.com.py/assets_front/images/logo.svg",
+    action: "Ver lista de regalos",
   },
+    {
+      name: "Amazon Gift",
+      clipboard: "mmartinez6661@gmail.com",
+      link: "https://www.amazon.com/Amazon-eGift-Card-Orange-Animated/dp/B004LLIKVU?th=1",
+      logo: "https://m.media-amazon.com/images/G/01/GiftCards/2025/Q4/VX-2825/Flyout_Nav_SendEGC_US-EN.png",
+      action: "Copiar Info y Enviar e-gift",
+    },
 ];
 
 export default async function GiftListPage({
@@ -81,8 +88,8 @@ export default async function GiftListPage({
             {vendors.map((vendor, index) => (
               <AnimatedSection key={index} delay={1} direction="up">
                 <div className="bg-white rounded-3xl shadow-md border border-gray-200 p-8 h-full flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img
+                  <div className="flex items-center gap-4 mb-4 h-full">
+                    <Image
                       src={vendor.logo}
                       alt={vendor.name}
                       width={100}

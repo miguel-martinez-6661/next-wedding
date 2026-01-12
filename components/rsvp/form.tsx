@@ -113,7 +113,7 @@ export const RsvpForm = ({
         </p>
         <p className="text-thin font-cormorant">
           Por favor, confirma si podrás acompañarnos antes del{" "}
-          <span className="font-bold font-serif">12 de Enero de 2026</span>.
+          <span className="font-bold font-serif">16 de Enero de 2026</span>.
         </p>
       </div>
       <div className="flex flex-col border-1 border-gray-200 bg-white/50 rounded-lg w-full md:w-2/3 p-4 z-20">

@@ -48,8 +48,8 @@ export function ScanModal({ guest, isOpen, onClose }: ScanModalProps) {
           <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
             <div className="space-y-3">
               <div>
-                <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Nombre
+              <label className="text-lg font-bold text-gray-500 dark:text-gray-400">
+                Nombre
                 </label>
                 <p className="text-lg font-semibold text-gray-900 dark:text-white mt-1">
                   {guest.name}
@@ -57,11 +57,11 @@ export function ScanModal({ guest, isOpen, onClose }: ScanModalProps) {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Código de Invitación
+                <label className="text-lg font-bold text-gray-500 dark:text-gray-400">
+                  Número de Mesa:
                 </label>
-                <p className="text-sm font-mono text-gray-900 dark:text-white mt-1">
-                  {guest.inviteCode}
+                <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">
+                  {guest.tableNumber}
                 </p>
               </div>
 

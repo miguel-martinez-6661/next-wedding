@@ -6,4 +6,5 @@ export type Guest = {
   maxNumberOfGuests: number;
   qrCode: string;
   isConfirmed?: boolean;
+  tableNumber?: number;
 };

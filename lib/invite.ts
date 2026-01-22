@@ -9,7 +9,7 @@ export const getInviteByCode = async (
     ? await getSheetData(process.env.GOOGLE_SPREADSHEET_ID!, SHEET_RANGE)
     : { data: null, error: null };
 
-  const [inviteCode, name, maxNumberOfGuests, going, numberOfGuests, qrCode] =
+  const [inviteCode, name, maxNumberOfGuests, going, numberOfGuests, qrCode, _phone, _diff, _link, _whatsapp, _anything, tableNumber] =
     response?.data?.find((row: string[]) => row[0] === code) || [];
 
   // Check if RSVP is confirmed (going field has a value)
@@ -23,6 +23,7 @@ export const getInviteByCode = async (
     maxNumberOfGuests: maxNumberOfGuests ? Number(maxNumberOfGuests) : 0,
     qrCode,
     isConfirmed,
+    tableNumber: tableNumber ? Number(tableNumber) : undefined,
   } satisfies Guest & { isConfirmed: boolean };
 };
 

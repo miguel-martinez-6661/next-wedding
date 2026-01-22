@@ -5,4 +5,4 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const SHEET_RANGE = "RSVP!A3:F54";
+export const SHEET_RANGE = "RSVP!A3:L47";

@@ -113,6 +113,7 @@ export default function ScanPage() {
 
               if (response.ok) {
                 const guestData = await response.json();
+                console.log(guestData);
                 setGuest(guestData);
                 setIsModalOpen(true);
                 toast.success("QR Code escaneado exitosamente");
@@ -247,29 +248,8 @@ export default function ScanPage() {
 
             {/* Scanned Result */}
             {scannedData && (
-              <div className="space-y-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-green-900 dark:text-green-100 mb-2">
-                      Código escaneado:
-                    </h3>
-                    <div className="bg-white dark:bg-gray-800 p-3 rounded border border-green-200 dark:border-green-700 break-all">
-                      <p className="text-sm text-gray-900 dark:text-gray-100 font-mono">
-                        {scannedData}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    onClick={handleCopyToClipboard}
-                    variant="outline"
-                    size="sm"
-                    className="flex-1"
-                  >
-                    Copiar
-                  </Button>
+              <div className="space-y-4 p-4 rounded-lg border">
+                <div className="flex gap-1">
                   <Button
                     onClick={() => {
                       setScannedData(null);

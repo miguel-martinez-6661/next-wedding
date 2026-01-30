@@ -49,7 +49,7 @@ export const GiftSection = ({ rsvpCode }: GiftSectionProps) => {
 
           <CopyToClipboard
             title="Copiar alias"
-            text="4655118"
+            text="4693042"
             className="w-full mt-2 bg-black text-white transition-colors cursor-pointer font-cormorant"
           />
         </div>

@@ -4,8 +4,31 @@ import { Guest } from "@/types";
 import { google } from "googleapis";
 import { SHEET_RANGE } from "./utils";
 
+const YES_VALUE = "Sí";
+const NO_VALUE = "No";
+const SHEET_CACHE_TTL_MS = 60 * 1000;
+const sheetDataCache = new Map<string, { data: string[][]; timestamp: number }>();
+let cachedSheetsClient: ReturnType<typeof google.sheets> | null = null;
+
+function getCacheKey(spreadsheetId: string, range: string) {
+  return `${spreadsheetId}:${range}`;
+}
+
+function invalidateSheetCache(spreadsheetId: string) {
+  const prefix = `${spreadsheetId}:`;
+  for (const key of sheetDataCache.keys()) {
+    if (key.startsWith(prefix)) {
+      sheetDataCache.delete(key);
+    }
+  }
+}
+
 // Initialize Google Sheets client
 function getSheetsClient() {
+  if (cachedSheetsClient) {
+    return cachedSheetsClient;
+  }
+
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
   if (
@@ -25,54 +48,33 @@ function getSheetsClient() {
     projectId: process.env.GOOGLE_PROJECT_ID,
   });
 
-  return google.sheets({ version: "v4", auth });
+  cachedSheetsClient = google.sheets({ version: "v4", auth });
+  return cachedSheetsClient;
 }
 
 /**
  * Get data from a Google Sheet
  */
-// Yes, you can cache the result of this call (getSheetData), especially if your sheet data does not change frequently or you want to reduce API calls and improve performance.
-// In a serverless environment (like Next.js "use server"), you can use an in-memory cache like a simple Map for the server session, or a more persistent cache like Redis for longer-term caching.
-//
-// Example: Basic in-memory cache (not shared across serverless instances, just for illustration):
-
-// const _sheetDataCache = new Map<
-//   string,
-//   { data: any; error: any; timestamp: number }
-// >();
-// const CACHE_TTL_MS = 60 * 60 * 1000; // cache for 1 hour
-
-// export async function getSheetDataCached(
-//   spreadsheetId: string,
-//   range: string = "RSVP!A3:F47"
-// ) {
-//   const cacheKey = `${spreadsheetId}:${range}`;
-//   const cached = _sheetDataCache.get(cacheKey);
-//   const now = Date.now();
-
-//   if (cached && now - cached.timestamp < CACHE_TTL_MS) {
-//     return cached;
-//   }
-
-//   const result = await getSheetData(spreadsheetId, range);
-//   _sheetDataCache.set(cacheKey, { ...result, timestamp: now });
-//   return result;
-// }
-
-// Note: For production, use an external cache like Redis if you need persistence across serverless instances.
-
 export async function getSheetData(
   spreadsheetId: string,
   range: string = SHEET_RANGE
 ) {
   try {
+    const cacheKey = getCacheKey(spreadsheetId, range);
+    const cached = sheetDataCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < SHEET_CACHE_TTL_MS) {
+      return { data: cached.data, error: null };
+    }
+
     const sheets = getSheetsClient();
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
     });
 
-    return { data: response.data.values || [], error: null };
+    const data = response.data.values || [];
+    sheetDataCache.set(cacheKey, { data, timestamp: Date.now() });
+    return { data, error: null };
   } catch (error) {
     console.error("Error getting sheet data:", error);
     return {
@@ -104,7 +106,7 @@ export async function appendRsvpToSheet(
       [
         timestamp,
         data.inviteCode,
-        data.going ? "Sí" : "No",
+        data.going ? YES_VALUE : NO_VALUE,
         data.numberOfGuests.toString(),
       ],
     ];
@@ -129,6 +131,7 @@ export async function appendRsvpToSheet(
       },
     });
 
+    invalidateSheetCache(spreadsheetId);
     return { success: true, error: null };
   } catch (error) {
     console.error("Error appending to sheet:", error);
@@ -182,13 +185,14 @@ export async function updateRsvpInSheet(
             inviteCode,
             data.name,
             data.maxNumberOfGuests,
-            data.going ? "Si" : "No",
+            data.going ? YES_VALUE : NO_VALUE,
             data.numberOfGuests,
           ],
         ],
       },
     });
 
+    invalidateSheetCache(spreadsheetId);
     return { success: true, error: null };
   } catch (error) {
     console.error("Error updating sheet:", error);

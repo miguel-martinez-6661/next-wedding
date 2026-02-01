@@ -20,7 +20,7 @@ export function ScanModal({ guest, isOpen, onClose }: ScanModalProps) {
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      
+
       {/* Modal Content */}
       <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6 space-y-6 animate-in fade-in-0 zoom-in-95 duration-200">
         {/* Close Button */}
@@ -48,8 +48,8 @@ export function ScanModal({ guest, isOpen, onClose }: ScanModalProps) {
           <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
             <div className="space-y-3">
               <div>
-              <label className="text-lg font-bold text-gray-500 dark:text-gray-400">
-                Nombre
+                <label className="text-lg font-bold text-gray-500 dark:text-gray-400">
+                  Nombre
                 </label>
                 <p className="text-lg font-semibold text-gray-900 dark:text-white mt-1">
                   {guest.name}
@@ -61,7 +61,7 @@ export function ScanModal({ guest, isOpen, onClose }: ScanModalProps) {
                   Número de Mesa:
                 </label>
                 <p className="text-lg font-bold text-gray-900 dark:text-white mt-1">
-                  {guest.tableNumber}
+                  {guest.tableNumber ?? "Por asignar"}
                 </p>
               </div>
 

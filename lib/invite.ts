@@ -2,6 +2,36 @@ import { Guest } from "@/types";
 import { getSheetData, updateRsvpInSheet } from "./sheets";
 import { SHEET_RANGE } from "./utils";
 
+const emptyGuest = {
+  inviteCode: "",
+  name: "",
+  going: null,
+  numberOfGuests: 0,
+  maxNumberOfGuests: 0,
+  qrCode: "",
+  isConfirmed: false,
+  tableNumber: undefined,
+} satisfies Guest & { isConfirmed: boolean };
+
+const toNumber = (value?: string) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
+const toOptionalNumber = (value?: string) => {
+  if (!value) return undefined;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : undefined;
+};
+
+const normalizeGoing = (value?: string) => {
+  if (!value) return null;
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "si" || normalized === "sí") return true;
+  if (normalized === "no") return false;
+  return null;
+};
+
 export const getInviteByCode = async (
   code: string
 ): Promise<Guest & { isConfirmed: boolean }> => {
@@ -9,21 +39,35 @@ export const getInviteByCode = async (
     ? await getSheetData(process.env.GOOGLE_SPREADSHEET_ID!, SHEET_RANGE)
     : { data: null, error: null };
 
-  const [inviteCode, name, maxNumberOfGuests, going, numberOfGuests, qrCode, _phone, _diff, _link, _whatsapp, _anything, tableNumber] =
-    response?.data?.find((row: string[]) => row[0] === code) || [];
+  if (!response.data || response.error) {
+    return { ...emptyGuest };
+  }
+
+  const row = response.data.find((entry: string[]) => entry[0] === code);
+  if (!row) {
+    return { ...emptyGuest };
+  }
+
+  const inviteCode = row[0] ?? "";
+  const name = row[1] ?? "";
+  const maxNumberOfGuests = toNumber(row[2]);
+  const goingValue = normalizeGoing(row[3]);
+  const numberOfGuests = toNumber(row[4]);
+  const qrCode = row[5] ?? "";
+  const tableNumber = toOptionalNumber(row[11]);
 
   // Check if RSVP is confirmed (going field has a value)
-  const isConfirmed = going === "Si" || going === "No";
+  const isConfirmed = goingValue !== null;
 
   return {
     inviteCode,
     name,
-    going: going === "Si" ? true : going === "No" ? false : null,
-    numberOfGuests: numberOfGuests ? Number(numberOfGuests) : 0,
-    maxNumberOfGuests: maxNumberOfGuests ? Number(maxNumberOfGuests) : 0,
+    going: goingValue,
+    numberOfGuests,
+    maxNumberOfGuests,
     qrCode,
     isConfirmed,
-    tableNumber: tableNumber ? Number(tableNumber) : undefined,
+    tableNumber,
   } satisfies Guest & { isConfirmed: boolean };
 };
 

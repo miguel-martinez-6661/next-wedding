@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { Button } from "@/components/ui/button";
-import { QrCode, Camera, X, CheckCircle2 } from "lucide-react";
+import { QrCode, Camera, X } from "lucide-react";
 import { toast } from "sonner";
 import { ScanModal } from "@/components/scan-modal/scan-modal";
 import { Guest } from "@/types";
@@ -20,7 +20,7 @@ export default function ScanPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isCleaningRef = useRef(false);
 
-  const cleanupScanner = async () => {
+  const cleanupScanner = useCallback(async () => {
     if (scannerRef.current && !isCleaningRef.current) {
       isCleaningRef.current = true;
       try {
@@ -33,12 +33,12 @@ export default function ScanPage() {
         isCleaningRef.current = false;
       }
     }
-  };
+  }, []);
 
-  const startScan = () => {
+  const startScan = useCallback(() => {
     setScannedData(null);
     setScanning(true);
-  };
+  }, []);
 
   useEffect(() => {
     if (!scanning) return;
@@ -113,7 +113,6 @@ export default function ScanPage() {
 
               if (response.ok) {
                 const guestData = await response.json();
-                console.log(guestData);
                 setGuest(guestData);
                 setIsModalOpen(true);
                 toast.success("QR Code escaneado exitosamente");
@@ -149,9 +148,9 @@ export default function ScanPage() {
         cleanupScanner();
       }
     };
-  }, [scanning]);
+  }, [cleanupScanner, scanning]);
 
-  const stopScan = async () => {
+  const stopScan = useCallback(async () => {
     await cleanupScanner();
     setScanning(false);
     setScannedData(null);
@@ -159,34 +158,29 @@ export default function ScanPage() {
     setIsModalOpen(false);
 
     // Clear the container
-    const container = document.getElementById("qr-reader");
+    const container =
+      containerRef.current || document.getElementById("qr-reader");
     if (container) {
       container.innerHTML = "";
     }
-  };
+  }, [cleanupScanner]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
     setGuest(null);
-  };
+  }, []);
 
   useEffect(() => {
     // Cleanup on unmount
     return () => {
       cleanupScanner();
-      const container = document.getElementById("qr-reader");
+      const container =
+        containerRef.current || document.getElementById("qr-reader");
       if (container) {
         container.innerHTML = "";
       }
     };
-  }, []);
-
-  const handleCopyToClipboard = () => {
-    if (scannedData) {
-      navigator.clipboard.writeText(scannedData);
-      toast.success("Copiado al portapapeles");
-    }
-  };
+  }, [cleanupScanner]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">

@@ -10,7 +10,6 @@ interface EnvelopeModalProps {
 }
 
 export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
-  const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -20,27 +19,13 @@ export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
         console.error("Error playing video:", error);
       });
     }
-
-    if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.error("Error playing audio:", error);
-      });
-    }
   }, []);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     // If video is playing, skip to end and trigger content reveal
     if (videoRef.current && !videoRef.current.ended) {
       videoRef.current.currentTime = videoRef.current.duration;
     } else {
-      // If video hasn't started or already ended, start music and show content
-      if (audioRef.current) {
-        try {
-          await audioRef.current.play();
-        } catch (error) {
-          console.error("Error playing audio:", error);
-        }
-      }
       onOpen();
     }
   };
@@ -50,7 +35,7 @@ export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
   ) => {
     console.error("Video error:", e);
     // If video fails to load, just show content
-    handleClick();
+    onOpen();
   };
 
   return (
@@ -80,26 +65,17 @@ export function EnvelopeModal({ onOpen, guest }: EnvelopeModalProps) {
         </div>
         <video
           ref={videoRef}
-          src="/intro-mobile.mp4"
-          className="w-full h-full object-cover bg-white block md:hidden"
+          className="w-full h-full object-cover bg-white"
           autoPlay
           muted
           playsInline
           preload="auto"
           onError={handleVideoError}
           onClick={handleClick}
-        />
-        <video
-          ref={videoRef}
-          src="/intro.mp4"
-          className="w-full h-full object-cover bg-white md:block hidden"
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onError={handleVideoError}
-          onClick={handleClick}
-        />
+        >
+          <source src="/intro-mobile.mp4" media="(max-width: 767px)" />
+          <source src="/intro.mp4" media="(min-width: 768px)" />
+        </video>
 
         <div
           className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center cursor-pointer z-10"
